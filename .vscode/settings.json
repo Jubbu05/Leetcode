@@ -2,6 +2,7 @@
     "files.associations": {
         "*.html": "html",
         "vector": "cpp",
-        "span": "cpp"
+        "span": "cpp",
+        "tuple": "cpp"
     }
 }
