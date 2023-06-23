@@ -1,49 +1,8 @@
-// class Solution
-// {
-// public:
-//     void dfs(int node, vector<int> adj[], vector<int> &vis)
-//     {
-//         vis[node] = 1;
-//         for (auto it : adj[node])
-//         {
-//             if (!vis[it])
-//                 dfs(it, adj, vis);
-//         }
-//     }
-//     int numProvinces(vector<vector<int>> adj, int V)
-//     {
-//         // converting ajacency matrix to adjacency list
-//         vector<int> adjList[V];
-//         for (int i = 0; i < adj.size(); i++)
-//         {
-//             for (int j = 0; j < adj[i].size(); j++)
-//             {
-//                 if (adj[i][j] == 1 && i != j)
-//                 {
-//                     adjList[i].push_back(j);
-//                     adjList[j].push_back(i);
-//                 }
-//             }
-//         }
-//         int cnt = 0;
-//         vector<int> vis(V, 0);
-//         for (int i = 0; i < V; i++)
-//         {
-//             if (!vis[i])
-//             {
-//                 dfs(i, adjList, vis);
-//                 cnt++;
-//             }
-//         }
-//         return cnt;
-//     }
-// };
-
 class DisjointSet
 {
-
 public:
     vector<int> rank, parent, size;
+
     DisjointSet(int n)
     {
         rank.resize(n + 1, 0);
@@ -102,31 +61,63 @@ public:
         }
     }
 };
+
 class Solution
 {
 public:
-    int numProvinces(vector<vector<int>> adj, int V)
+    vector<vector<string>> accountsMerge(vector<vector<string>> &accounts)
     {
-        DisjointSet ds(V);
+        int n = accounts.size();
 
-        for (int i = 0; i < V; i++)
+        DisjointSet ds(n);
+
+        unordered_map<string, int> mapMailNode;
+        for (int i = 0; i < n; i++)
         {
-            for (int j = 0; j < V; j++)
+            // coz 0th index is name
+            for (int j = 1; j < accounts[i].size(); j++)
             {
-                if (adj[i][j] == 1)
+                string mail = accounts[i][j];
+
+                // doesnt exist
+                if (mapMailNode.find(mail) == mapMailNode.end())
                 {
-                    ds.unionBySize(i, j);
+                    mapMailNode[mail] = i;
+                }
+                // previously seen
+                else
+                {
+                    ds.unionBySize(i, mapMailNode[mail]);
                 }
             }
         }
 
-        int cnt = 0;
-        for (int i = 0; i < V; i++)
+        vector<string> mergeMail[n];
+        for (auto it : mapMailNode)
         {
-            if (ds.parent[i] == i)
-                cnt++;
+            string mail = it.first;
+            int node = it.second;
+            int ultimateParent = ds.findUPar(node);
+            mergeMail[ultimateParent].push_back(mail);
         }
 
-        return cnt;
+        vector<vector<string>> ans;
+
+        for (int i = 0; i < n; i++)
+        {
+            if (mergeMail[i].size() == 0)
+                continue;
+            sort(mergeMail[i].begin(), mergeMail[i].end());
+            vector<string> temp;
+            // inserting name
+            temp.push_back(accounts[i][0]);
+
+            for (auto it : mergeMail[i])
+            {
+                temp.push_back(it);
+            }
+            ans.push_back(temp);
+        }
+        return ans;
     }
 };
