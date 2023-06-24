@@ -7,6 +7,7 @@ public:
     // Function to find sum of weights of edges of the Minimum Spanning Tree.
     int spanningTree(int V, vector<vector<int>> adj[])
     {
+        //min heap
         priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
 
         vector<int> vis(V, 0);
@@ -21,7 +22,7 @@ public:
             int node = it.second;
             int wt = it.first;
 
-            // if visited cintinue
+            // if visited continue
             if (vis[node] == 1)
                 continue;
             // add it to the mst
@@ -113,6 +114,7 @@ public:
     {
         // 5, 1, 2
         // 5, 2, 1
+        //{wt, {u, v}}
         vector<pair<int, pair<int, int>>> edges;
         for (int i = 0; i < V; i++)
         {
@@ -126,7 +128,7 @@ public:
             }
         }
         DisjointSet ds(V);
-        sort(edges.begin(), edges.end());
+        sort(edges.begin(), edges.end()); //sorting the edges according to the weight
         int mstWt = 0;
         for (auto it : edges)
         {

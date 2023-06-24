@@ -70,8 +70,7 @@ private:
     }
 
 public:
-    vector<int> numOfIslands(int n, int m,
-                             vector<vector<int>> &operators)
+    vector<int> numOfIslands(int n, int m, vector<vector<int>> &operators)
     {
         DisjointSet ds(n * m);
         int vis[n][m];
