@@ -1,0 +1,4 @@
+1. Try to represent the problem in terms of index
+2. Do all possible stuff's on that index according to the problem statement
+3. Count all ways -> sum up all stuff's
+   Find minimum - > min(all the stuff's)
