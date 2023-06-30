@@ -6,7 +6,7 @@ public:
         int high = n - 1; 
 
         while (low <= high) {
-            int mid = low + (high - low) / 2; /
+            int mid = low + (high - low) / 2; 
 
             if (nums[mid] == target)
                 return mid; // Return the index if the target is found
@@ -14,7 +14,7 @@ public:
             // Check if the left half is sorted
             if (nums[low] <= nums[mid]) {
                 // Checking if the target lies in the left half
-                if (nums[low] <= target && target <= nums[mid])
+                if (nums[low] <= target && nums[mid] >= target)
                     high = mid - 1; // Adjust the search range to the left half
                 else
                     low = mid + 1; // Adjust the search range to the right half
