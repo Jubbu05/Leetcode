@@ -5,7 +5,7 @@ public:
     {
 
         for (int i = 0; i < n; i++)
-        {
+        {                    //its an edge(adj node) and has same colour
             if (i != node && graph[i][node] == 1 && colour[i] == rang)
                 return false;
         }

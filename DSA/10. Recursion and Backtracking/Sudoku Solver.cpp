@@ -37,7 +37,6 @@ public:
                                 board[i][j] = '.';
                         }
                     }
-
                     return false;
                 }
             }
