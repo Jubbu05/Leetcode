@@ -20,7 +20,7 @@ int f(vector<int> &arr, int i, int j, vector<vector<int>> &dp)
         mini = min(mini, ans);
     }
 
-    return mini;
+    return dp[i][j] = mini;
 }
 
 int matrixMultiplication(vector<int> &arr, int N)

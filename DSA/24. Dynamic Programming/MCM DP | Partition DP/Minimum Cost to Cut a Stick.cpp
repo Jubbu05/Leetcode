@@ -12,7 +12,7 @@ public:
         int mini = INT_MAX;
 
         for (int k = i; k <= j; k++)
-        {
+        {                                            //partition at index k
                        // length of the stick        // left part of the stick     // right part of the
             int cost = (cuts[j + 1] - cuts[i - 1]) + rec(i, k - 1, cuts, dp) + rec(k + 1, j, cuts, dp);
             mini = min(mini, cost);
