@@ -6,9 +6,8 @@ public:
         
         // moves for a
         for (int i = 0; i < (int)(num.size())-2; i++) {
-            
-            if (i == 0 || (i > 0 && num[i] != num[i-1])) {//to skip duplicate's a
-                
+                //a+b+c=0    
+                //b+c=0-a
                 int lo = i+1, hi = (int)(num.size())-1, sum = 0 - num[i];
                 
                 while (lo < hi) {
@@ -28,8 +27,8 @@ public:
                     } 
                     else if (num[lo] + num[hi] < sum) lo++;
                     else hi--;
-               }
             }
+            while(i+1<num.size() && num[i]==num[i+1]) i++;  //to skip duplicate a
         }
         return res;
     }
