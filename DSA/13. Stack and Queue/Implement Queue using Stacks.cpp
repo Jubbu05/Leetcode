@@ -12,13 +12,13 @@ public:
     
     int pop() {
         int x;
-        if(output.empty()==false){
+        if(!output.empty()){
             x = output.top();    
             output.pop();
             return x;
         }
         else{
-            while(input.empty()==false){
+            while(!input.empty()){
                 output.push(input.top());
                 input.pop();
             }
@@ -29,10 +29,10 @@ public:
     }
     
     int peek() {
-        if(output.empty()==false)
+        if(!output.empty())
             return output.top();
         else{
-            while(input.empty()==false){
+            while(!input.empty()){
                 output.push(input.top());
                 input.pop();
             }
@@ -42,6 +42,6 @@ public:
     }
     
     bool empty() {
-        return output.empty() && input.empty() ;
+        return output.empty() && input.empty();
     }
 };
