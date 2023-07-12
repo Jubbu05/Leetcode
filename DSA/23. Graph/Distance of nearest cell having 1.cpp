@@ -1,4 +1,4 @@
-class Solution
+`class Solution
 {
 public:
     vector<vector<int>> nearest(vector<vector<int>> grid)
@@ -11,6 +11,7 @@ public:
         // <coordinates, steps>
         queue<pair<pair<int, int>, int>> q;
         // traverse the matrix
+        //marking all 1's as visited with distance 0 and pushing them in queue
         for (int i = 0; i < n; i++)
         {
             for (int j = 0; j < m; j++)
