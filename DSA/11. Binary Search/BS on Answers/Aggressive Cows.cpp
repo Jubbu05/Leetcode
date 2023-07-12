@@ -1,3 +1,4 @@
+// min distance between cows is max
 bool isPossible(vector<int> &stalls, int n, int cows, int minDist)
 {
     int cntCows = 1;
@@ -20,8 +21,9 @@ int aggressiveCows(vector<int> &stalls, int cows)
 {
     int n = stalls.size();
     sort(stalls.begin(), stalls.end());
+
     int low = 1;
-    int high = stalls[n - 1] - stalls[0]; // max-min ... max distance
+    int high = stalls[n - 1] - stalls[0]; // max-min ... max distance we can have
 
     int ans = 0;
     while (low <= high)
