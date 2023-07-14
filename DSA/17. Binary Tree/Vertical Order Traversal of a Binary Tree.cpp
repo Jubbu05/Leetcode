@@ -26,15 +26,15 @@ public:
               todo.push({node -> right,{x + 1,y + 1}});
             }
           }
+
           vector<vector<int>> ans;
           for (auto p: nodes) {
             vector<int> col;
-            for (auto q: p.second) {
-              col.insert(col.end(), q.second.begin(), q.second.end());
+            for (auto q: p.second) { // p.second -> map<int, multiset<int>>
+              col.insert(col.end(), q.second.begin(), q.second.end()); // q.second -> multiset<int> inserting from back
             }
             ans.push_back(col);
           }
           return ans;
-        
     }
 };

@@ -1,5 +1,6 @@
 class Codec {
 public:
+    // level order traversal
     // Encodes a tree to a single string.
     string serialize(TreeNode* root) {
         if(root==NULL) return "";

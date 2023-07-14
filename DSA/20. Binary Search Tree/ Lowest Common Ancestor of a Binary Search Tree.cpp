@@ -1,3 +1,4 @@
+// the point where the paths split is the LCA
 class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {

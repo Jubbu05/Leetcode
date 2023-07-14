@@ -1,18 +1,18 @@
-// class Solution {
-//   TreeNode * prev = NULL;
-//   public:
-//     void flatten(TreeNode * root) {
-//       if (root == NULL) return;
+class Solution {
+  TreeNode * prev = NULL;
+  public:
+    void flatten(TreeNode * root) {
+      if (root == NULL) return;
 
-//       flatten(root -> right);
-//       flatten(root -> left);
+      flatten(root -> right);
+      flatten(root -> left);
 
-//       root -> right = prev;
-//       root -> left = NULL;
-//       prev = root;
-//     }
+      root -> right = prev;
+      root -> left = NULL;
+      prev = root;
+    }
 
-// };
+};
 
 class Solution
 {
@@ -30,7 +30,7 @@ public:
                 {
                     pre = pre->right;
                 }
-                pre->right = cur->right;
+                pre->right = cur->right; // connecting the righrmost node of left subtree to right subtree
                 cur->right = cur->left;
                 cur->left = NULL;
             }
