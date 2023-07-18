@@ -20,6 +20,11 @@ public:
             int value = p.first;
             int index = p.second;
 
+            // 2,0  8,1  5,2  4,3
+
+            // 2,0  4,3  5,2  8,1
+            // i=0    1    2    3
+
             // if  i == index then index is at correct position no need to swap
 
             if (i != index)
