@@ -13,7 +13,7 @@ public:
             int cut1 = (low + high) / 2; // Calculate the cut position for the first array
             int cut2 = ((n1 + n2 + 1) /2) - cut1; // Calculate the corresponding cut position for the second array
 
-            int l1 = (cut1 == 0) ? INT_MIN : nums1[cut1 - 1]; // Get the left element of the first array segment
+            int l1 = (cut1 == 0) ? INT_MIN : nums1[cut1 - 1]; //         Get the left element of the first array segment
             int l2 = (cut2 == 0) ? INT_MIN : nums2[cut2 - 1]; // Get the left element of the second array segment
             int r1 = (cut1 == n1) ? INT_MAX : nums1[cut1]; // Get the right element of the first array segment
             int r2 = (cut2 == n2) ? INT_MAX : nums2[cut2]; // Get the right element of the second array segment
