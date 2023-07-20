@@ -1,59 +1,59 @@
 // //O(N^2)
-// class Solution {
-// public:
-//     bool isPalindrome(string s){
-//         int n = s.length();
-//         int i = 0;
-//         int j = n-1;
+class Solution {
+public:
+    bool isPalindrome(string s){
+        int n = s.length();
+        int i = 0;
+        int j = n-1;
         
-//         while(i<=j){
-//             if(s[i]!=s[j]){
-//                 return false;
-//             }
-//             else{
-//                 i++;
-//                 j--;
-//             }
-//         }
-//         return true;
-//     }
-//     int minChar(string str){
-//         int n = str.length();
-//         int added = 0;
+        while(i<=j){
+            if(s[i]!=s[j]){
+                return false;
+            }
+            else{
+                i++;
+                j--;
+            }
+        }
+        return true;
+    }
+    int minChar(string str){
+        int n = str.length();
+        int added = 0;
         
-//         while(n>0){
-//             if(isPalindrome(str.substr(0, n-added))) break;
-//             else added++;
-//         }
-//         return added;
-//     }
-// };
+        while(n>0){
+            if(isPalindrome(str.substr(0, n-added))) break;
+            else added++;
+        }
+        return added;
+    }
+};
 
 //O(N)
-// class Solution {
-// public:
-//     int minChar(string str){
-//         int n = str.length();
-//         int added = 0;
-//         int i = 0;
-//         int j = n-1;
-//         int lastIdx = n-1;
+class Solution {
+public:
+    int minChar(string str){
+        int n = str.length();
+        int added = 0;
+        int i = 0;
+        int j = n-1;
+        int lastIdx = n-1;
         
-//         while(i<j){
-//             if(str[i] == str[j]){
-//                 i++;
-//                 j--;
-//             }
-//             else{
-//                 i = 0;
-//                 lastIdx--;
-//                 j = lastIdx;
-//             }
-//         }
-//         added = n-1 - lastIdx;
-//         return added;
-//     }
-// };
+        while(i<j){
+            if(str[i] == str[j]){
+                i++;
+                j--;
+            }
+            else{
+                i = 0;
+                lastIdx--;
+                j = lastIdx;
+            }
+        }
+        added = n-1 - lastIdx;
+        return added;
+    }
+};
 
 int helper(int idx1, int idx2, string s1, string s2, vector<vector<int>> &dp)
     {
