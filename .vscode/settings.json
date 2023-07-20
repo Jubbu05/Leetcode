@@ -3,6 +3,20 @@
         "*.html": "html",
         "vector": "cpp",
         "span": "cpp",
-        "tuple": "cpp"
+        "tuple": "cpp",
+        "string": "cpp",
+        "array": "cpp",
+        "deque": "cpp",
+        "forward_list": "cpp",
+        "list": "cpp",
+        "unordered_map": "cpp",
+        "unordered_set": "cpp",
+        "string_view": "cpp",
+        "initializer_list": "cpp",
+        "ranges": "cpp",
+        "regex": "cpp",
+        "valarray": "cpp",
+        "bitset": "cpp",
+        "utility": "cpp"
     }
 }
