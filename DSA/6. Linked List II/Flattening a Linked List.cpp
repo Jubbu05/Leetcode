@@ -34,7 +34,7 @@ Node *merge(Node *a, Node *b){
     }
     
     if(a != NULL){
-        temp->bottom = a;
+        temp->bottom = a; // taking all the remaining nodes of linked list a
     }
     else{
         temp->bottom = b;
