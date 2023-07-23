@@ -32,6 +32,7 @@ public:
 };
 
 //OPTIMAL APPROACH 2
+//TC - O(min(n,m)) + O(nlogn) + O(mlogm)
 class Solution
 {
 public:
@@ -40,7 +41,7 @@ public:
     int left = m - 1;
     int right = 0;
 
-    while (left >= 0 && right < n)
+    while (left >= 0 && right < n) //O(min(n,m))
     {
       if (nums1[left] > nums2[right])
       {
@@ -53,7 +54,7 @@ public:
         break;
       }
     }
-    sort(nums1.begin(), nums1.end());
-    sort(nums2.begin(), nums2.end());
+    sort(nums1.begin(), nums1.end()); //O(nlogn)
+    sort(nums2.begin(), nums2.end()); //O(mlogm)
   }
 };

@@ -1,3 +1,4 @@
+//TC - O(NlogN) + O(N) 
 class Solution {
 public:
     int longestConsecutive(vector<int>& arr) {
@@ -24,6 +25,8 @@ public:
 
 //------------------------------------------------------------------------------------------------
 
+//Optimized Approach
+//TC - O(N) + O(N) + O(N) = O(3N) = O(N)
 class Solution {
 public:
     int longestConsecutive(vector<int>& nums) {

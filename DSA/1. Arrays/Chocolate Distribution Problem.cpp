@@ -7,7 +7,7 @@ public:
         if (n == 1 && m == 1) return 0;
         sort(a.begin(), a.end());
         long long min = INT_MAX;
-        for (int i = 0; i + m - 1 < n; i++)
+        for (int i = 0; i + m - 1 < n; i++) // i + m - 1 is window size
         {
             long long diff = a[i + m - 1] - a[i];
             if (diff < min)
