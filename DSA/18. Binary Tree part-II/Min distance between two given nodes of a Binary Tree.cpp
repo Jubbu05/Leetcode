@@ -17,20 +17,17 @@ class Solution
     }
     int solve(Node *root, int a)
     {
-        if (!root)
-            return 0;
+        if (root == NULL)
+        {
+            return 1e9;
+        }
         if (root->data == a)
-            return 1;
+        {
+            return 0;
+        }
         int l = solve(root->left, a);
         int r = solve(root->right, a);
-        if (!l and !r)
-            return 0;
-        if (!l)
-            return r + 1;
-        if (!r)
-            return l + 1;
-        int minVal = min(l, r);
-        return minVal + 1;
+        return min(l, r) + 1;
     }
 
 public:
@@ -42,6 +39,7 @@ public:
         Node *lca = leastCommonAncestor(root, a, b);
         int x = solve(lca, a);
         int y = solve(lca, b);
-        return (x + y - 2);
+        int lcaDist = solve(lca, lca->data);
+        return (x + y - 2 * lcaDist);
     }
 };

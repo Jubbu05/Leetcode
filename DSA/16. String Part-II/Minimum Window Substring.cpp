@@ -3,7 +3,6 @@ class Solution
 public:
     string minWindow(string s, string t)
     {
-
         if (s.length() == 0 || t.length() == 0 || s.length() < t.length())
             return "";
 
