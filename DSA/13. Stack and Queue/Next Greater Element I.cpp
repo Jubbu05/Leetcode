@@ -20,7 +20,7 @@ public:
         }
         for (auto x : nums1)
         {
-            ans.push_back(um[x]);
+            ans.push_back(um[;x]);
         }
         return ans;
     }

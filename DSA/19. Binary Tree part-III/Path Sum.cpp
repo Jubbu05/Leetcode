@@ -1,8 +1,12 @@
-class Solution {
+class Solution
+{
 public:
-    bool hasPathSum(TreeNode* root, int targetSum) {
-        if(root == NULL) return false;
-        if(root->left == NULL && root->right == NULL && targetSum == root->val) return true;
+    bool hasPathSum(TreeNode *root, int targetSum)
+    {
+        if (root == NULL)
+            return false;
+        if (root->left == NULL && root->right == NULL && targetSum == root->val)
+            return true;
 
         bool left = hasPathSum(root->left, targetSum - root->val);
         bool right = hasPathSum(root->right, targetSum - root->val);
