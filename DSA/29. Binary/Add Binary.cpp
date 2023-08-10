@@ -1,0 +1,33 @@
+// sum = sum % 2
+// carry = sum / 2
+class Solution
+{
+public:
+    string addBinary(string a, string b)
+    {
+        int alen = a.length();
+        int blen = b.length();
+        int i = 0, carry = 0;
+        string ans = "";
+
+        while (i < alen || i < blen || carry != 0)
+        {
+            int x = 0; // get the last digit of a
+            if (i < alen && a[alen - i - 1] == '1')
+            {
+                x = 1;
+            }
+
+            int y = 0;
+            if (i < blen and b[blen - i - 1] == '1')
+            {
+                y = 1;
+            }
+            // appending before the ans
+            ans = to_string((x + y + carry) % 2) + ans;
+            carry = (x + y + carry) / 2;
+            i++;
+        }
+        return ans;
+    }
+};
