@@ -3,7 +3,7 @@ class Solution
 public:
     void solve(string digits, string output, int index, vector<string> &ans, vector<string> &mappings)
     {
-        if (index >= digits.size())
+        if (index == digits.size())
         {
             ans.push_back(output);
             return;

@@ -1,50 +1,54 @@
-// class Solution {
-// public:
-//     vector<int> maxSlidingWindow(vector<int>& nums, int k) {
-//         int n = nums.size();
-//         int x = n-k;
-//         vector<int> ans;
-//         for(int i=0; i<=x; i++){
-//             int maxi = nums[i];
-//             for(int j=i; j<i+k; j++){
-//                 maxi=max(nums[j], maxi);
-//             }
-//             ans.push_back(maxi);
-//         }
-//         return ans;
-//     }
-// };
+class Solution {
+public:
+    vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+        int n = nums.size();
+        int x = n-k;
+        vector<int> ans;
+        for(int i=0; i<=x; i++){
+            int maxi = nums[i];
+            for(int j=i; j<i+k; j++){
+                maxi=max(nums[j], maxi);
+            }
+            ans.push_back(maxi);
+        }
+        return ans;
+    }
+};
 
-// class Solution {
-// public:
-//     vector<int> maxSlidingWindow(vector<int>& nums, int k) {
-//         vector<int> ans;
-//         int n=nums.size();
-//         //storing in decreasing order
-//         deque <int> dq;
-//         //visiting first subarray of size k
-//         for(int i=0; i<k; i++)
-//         {
-//             while(!dq.empty() && dq.back()<nums[i]){
-//                 dq.pop_back();
-//             }
-//             dq.push_back(nums[i]);
-//         }
-//         ans.push_back(dq.front());
+//----------------------------------------------------------------------------
 
-//         for(int i=k; i<n; i++){
-//             //remove element from previous window
-//             if(dq.front()==nums[i-k])
-//                 dq.pop_front();
-//             while(!dq.empty() && dq.back()<nums[i]){
-//                 dq.pop_back();
-//             }
-//             dq.push_back(nums[i]);
-//             ans.push_back(dq.front());
-//         }
-//         return ans;
-//     }
-// };
+class Solution {
+public:
+    vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+        vector<int> ans;
+        int n=nums.size();
+        //storing in decreasing order
+        deque <int> dq;
+        //visiting first subarray of size k
+        for(int i=0; i<k; i++)
+        {
+            while(!dq.empty() && dq.back()<nums[i]){
+                dq.pop_back();
+            }
+            dq.push_back(nums[i]);
+        }
+        ans.push_back(dq.front());
+
+        for(int i=k; i<n; i++){
+            //remove element from previous window
+            if(dq.front()==nums[i-k])
+                dq.pop_front();
+            while(!dq.empty() && dq.back()<nums[i]){
+                dq.pop_back();
+            }
+            dq.push_back(nums[i]);
+            ans.push_back(dq.front());
+        }
+        return ans;
+    }
+};
+
+//----------------------------------------------------------------------------
 
 class Solution {
 public:

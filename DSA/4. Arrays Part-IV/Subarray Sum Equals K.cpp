@@ -14,35 +14,29 @@ public:
                 count=m[sum-k]+count; 
             }
             
-            if(m.find(sum)!=m.end()){
-                m[sum]++;
-            }else{
-                m[sum]=1;
-            }
-            
+            m[sum]++;
         }
-        
         return count;
     }
 };
 
+//---------------------------------------------------------
 
 class Solution {
 public:
     int subarraySum(vector<int>& nums, int k) {
         unordered_map<int, int> m;
         int count=0;
-        int presum=0;
+        int sum=0;
         
-        m[0] = 1;
         int n=nums.size();
+        m[0] = 1;
         for(int i=0;i<n;i++){
-            presum+=nums[i];
-            int remove = presum - k;
-            count += m[remove];
-            m[presum] += 1;
+            sum+=nums[i];
+            int rem = sum - k;
+            count += m[rem];
+            m[sum]++;
         }
-        
         return count;
     }
 };

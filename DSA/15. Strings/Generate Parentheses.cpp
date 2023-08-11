@@ -5,20 +5,25 @@
 
 class Solution {
 public:
-    
-    void solver(vector<string>& ans, int n, int opening_count, int closing_count, string s){
-        if(opening_count == n && closing_count ==n){
-            ans.push_back(s);
+    void solve(vector<string>& ans, string temp, int oc, int cc, int n){
+        if(oc == n && cc == n){
+            ans.push_back(temp);
             return;
         }
-        if(opening_count < n) solver(ans, n, opening_count + 1, closing_count, s + "(");
-        if(closing_count < opening_count) solver(ans, n, opening_count, closing_count + 1, s + ")");   
+        if(oc < n){
+            solve(ans, temp + "(", oc+1, cc, n);
+        }
+
+        if(cc < oc){
+            solve(ans, temp + ")", oc, cc+1, n);
+        }
     }
-    
     vector<string> generateParenthesis(int n) {
         vector<string> ans;
-        int opening_count = 0, closing_count = 0;
-        solver(ans, n, opening_count, closing_count, "");
+        int oc = 0;
+        int cc = 0;
+        solve(ans, "", oc, cc, n);
+
         return ans;
     }
 };
