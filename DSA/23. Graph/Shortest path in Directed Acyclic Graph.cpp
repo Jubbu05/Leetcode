@@ -18,7 +18,6 @@ private:
 public:
     vector<int> shortestPath(int N, int M, vector<vector<int>> &edges)
     {
-
         // We create a graph first in the form of an adjacency list.
         vector<pair<int, int>> adj[N];
         for (int i = 0; i < M; i++)

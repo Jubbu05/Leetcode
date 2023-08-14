@@ -1,31 +1,24 @@
-class Solution
-{
-public:
-    vector<int> countDistinct(int A[], int n, int k)
+class Solution{
+  public:
+    vector <int> countDistinct (int A[], int n, int k)
     {
-        // code here.
-        unordered_map<int, int> mp;
-        for (int i = 0; i < k; i++)
-        {
-            mp[A[i]]++;
-        }
-
         vector<int> ans;
-        ans.push_back(mp.size());
-
-        for (int i = k; i < n; i++)
+        unordered_map<int,int> mp;
+        int j=0,i=0;
+        while(j<n)
         {
-            if (mp[A[i - k]] == 1)
+           mp[A[j]]++;
+            
+            if(j-i+1==k)
             {
-                mp.erase(A[i - k]);
+                ans.push_back(mp.size());
+                
+                mp[A[i]]--;
+                if(mp[A[i]]==0) mp.erase(A[i]);
+                
+                i++;
             }
-            else
-            {
-                mp[A[i - k]]--;
-            }
-
-            mp[A[i]]++;
-            ans.push_back(mp.size());
+            j++;
         }
         return ans;
     }

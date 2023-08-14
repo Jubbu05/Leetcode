@@ -78,35 +78,10 @@ public:
         }
 
         product = 1;
-        for (int j = n - 1; j >= 0; j--)
+        for (int i = n - 1; i >= 0; i--)
         {
-            ans[j] *= product;
-            product *= nums[j];
-        }
-
-        return ans;
-    }
-};
-
-// //------------------------------------------------------------------------------------
-
-class Solution
-{
-public:
-    vector<int> productExceptSelf(vector<int> &nums)
-    {
-        int n = nums.size();
-        vector<int> ans(n, 1);
-
-        int product1 = 1, product2 = 1;
-        for (int i = 0; i < n; i++)
-        {
-            ans[i] *= product1;
-            product1 *= nums[i];
-
-            int j = n - i - 1;
-            ans[j] *= product2;
-            product2 *= nums[j];
+            ans[i] *= product;
+            product *= nums[i];
         }
         return ans;
     }

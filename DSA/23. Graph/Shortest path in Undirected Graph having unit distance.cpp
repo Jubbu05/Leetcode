@@ -3,7 +3,6 @@ class Solution
 public:
     vector<int> shortestPath(vector<vector<int>> &edges, int N, int M, int src)
     {
-
         vector<int> adj[N];
         for (auto it : edges)
         {

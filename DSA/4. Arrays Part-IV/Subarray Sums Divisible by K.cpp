@@ -4,7 +4,7 @@ public:
     int subarraysDivByK(vector<int> &A, int k)
     {
         unordered_map<int, int> map;
-        map[0]++;
+        map[0] = 1;
         int cumsum = 0;
         int count = 0;
         for (int i = 0; i < A.size(); i++)
@@ -13,7 +13,7 @@ public:
             int remainder = cumsum % k;
             if (remainder < 0)
                 remainder += k; // since -1 mod 5 and 4 mod 5 are equivalent
-            if (map.count(remainder) > 0)
+            if (map.find(remainder)!=map.end())
             {
                 count += map[remainder]; // if we have already found remainder, then increase the count
             }

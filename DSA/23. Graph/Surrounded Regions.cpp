@@ -1,8 +1,10 @@
+//Intution mark all the 'O' which are connected to boundary 'O' as '#' as they can't be flipped
+//then flip all the 'O' to 'X' coz they are not conected to a boundary and can be flipped and '#' to 'O'->restoring the original board
 class Solution
 {
 public:
     void dfs(int i, int j, vector<vector<char>> &board)
-    {
+    { 
         if (i < 0 || i >= board.size() || j < 0 || j >= board[0].size() || board[i][j] != 'O')
             return;
         if (board[i][j] == 'O')

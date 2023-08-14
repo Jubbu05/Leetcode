@@ -1,17 +1,33 @@
 class Solution
 {
 public:
-    void dfs(int node, vector<int> adj[], vector<int> &vis)
+    // void dfs(int node, vector<int> adj[], vector<int> &vis)
+    // {
+    //     vis[node] = 1;
+    //     for (auto it : adj[node])
+    //     {
+    //         if (!vis[it])
+    //             dfs(it, adj, vis);
+    //     }
+    // }
+    void bfs(int node, vector<int> adj[], vector<int> &vis)
     {
         vis[node] = 1;
-        for (auto it : adj[node])
-        {
-            if (!vis[it])
-                dfs(it, adj, vis);
+        queue<int> q;
+        q.push(node);
+        while(!q.empty()){
+            int ele = q.front();
+            q.pop();
+            for(auto it : adj[ele]){
+                if(!vis[it]){
+                    bfs(it, adj, vis);
+                }
+            }
         }
     }
-    int numProvinces(vector<vector<int>> adj, int V)
+    int findCircleNum(vector<vector<int>>& adj)
     {
+        int V = adj.size();
         // converting ajacency matrix to adjacency list
         vector<int> adjList[V];
         for (int i = 0; i < adj.size(); i++)
@@ -31,7 +47,7 @@ public:
         {
             if (!vis[i])
             {
-                dfs(i, adjList, vis);
+                bfs(i, adjList, vis);
                 cnt++;
             }
         }

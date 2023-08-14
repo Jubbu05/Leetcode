@@ -1,22 +1,28 @@
-class Solution {
+class Solution
+{
 public:
-    int lengthOfLinkedList(ListNode* head) {
-    int length = 0;
-    while(head != NULL) {
-        length++;
-        head = head->next;
-    }
-    return length;
+    int lengthOfLinkedList(ListNode *head)
+    {
+        int length = 0;
+        while (head != NULL)
+        {
+            length++;
+            head = head->next;
+        }
+        return length;
     }
 
-    ListNode* reverseK(ListNode* head,int k, int length) {
-        if(length < k) return head;
+    ListNode *reverseK(ListNode *head, int k, int length)
+    {
+        if (length < k)
+            return head;
 
         int count = 0;
-        ListNode* prev = NULL;
-        ListNode* nex = NULL;
-        ListNode* curr = head;
-        while(curr!=NULL && count<k){
+        ListNode *prev = NULL;
+        ListNode *nex = NULL;
+        ListNode *curr = head;
+        while (curr != NULL && count < k)
+        {
             nex = curr->next;
             curr->next = prev;
             prev = curr;
@@ -24,15 +30,17 @@ public:
             count++;
         }
 
-        if(nex!=NULL){
-            head->next = reverseK(nex,k,length-k);
+        if (nex != NULL)
+        {
+            head->next = reverseK(nex, k, length - k);
         }
 
         return prev;
     }
-    
-    ListNode* reverseKGroup(ListNode* head,int k) {
+
+    ListNode *reverseKGroup(ListNode *head, int k)
+    {
         int length = lengthOfLinkedList(head);
-        return reverseK(head,k,length);
+        return reverseK(head, k, length);
     }
 };

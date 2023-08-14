@@ -45,11 +45,12 @@ vector<int> findMissingRepeatingNumbers(vector<int> a)
 		S += a[i];
 		S2 += (long long)a[i] * (long long)a[i];
 	}
+	// X-> REPEATING NUMBER, Y-> MISSING NUMBER
 
 	// S-Sn = X-Y:
 	long long val1 = S - SN;
 
-	// S2-S2n = X^2-Y^2:
+	// S2-S2n = X^2-Y^2 -> (X+Y)(X-Y)
 	long long val2 = S2 - S2N;
 
 	// Find X+Y = (X^2-Y^2)/(X-Y):
