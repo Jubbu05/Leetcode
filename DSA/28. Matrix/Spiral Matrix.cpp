@@ -5,46 +5,44 @@
 //     3 bottom to top
 class Solution {
 public:
-    vector<int> spiralOrder(vector<vector<int>>& A) {
-                
-        int T,B,L,R,dir;
-        T=0;
-        B=A.size()-1;
-        L=0;
-        R=A[0].size()-1;
-        dir=0;
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        int n = matrix.size();
+        int m = matrix[0].size();
+        int t = 0;
+        int b = n-1;
+        int l = 0;
+        int r = m-1;
+        int dir=0;
         int i;
         vector<int> ans;
 
-        while(T<=B && L<=R)
-        {
-            if(dir==0)
-            {
-                for(i=L;i<=R;i++)
-                    ans.push_back(A[T][i]);
-                T++;
+        while(t <= b && l <= r){
+            if(dir == 0){
+                for(i = l; i<=r; i++){
+                    ans.push_back(matrix[t][i]);
+                }
+                t++;
             }
-            else if(dir==1)
-            {
-                for(i=T;i<=B;i++)
-                    ans.push_back(A[i][R]);
-                R--;
+            else if(dir == 1){
+                for(i = t; i<=b; i++){
+                    ans.push_back(matrix[i][r]);
+                }
+                r--;
             }
-            else if(dir==2)
-            {
-                for(i=R;i>=L;i--)
-                    ans.push_back(A[B][i]);
-                B--;
+            else if(dir == 2){
+                for(i = r; i>=l; i--){
+                    ans.push_back(matrix[b][i]);
+                }
+                b--;
             }
-            else if(dir==3)
-            {
-                for(i=B;i>=T;i--)
-                    ans.push_back(A[i][L]);
-                L++;
+            else{
+                for(i = b; i>= t; i--){
+                    ans.push_back(matrix[i][l]);
+                }
+                l++;
             }
-            dir=(dir+1)%4;
+            dir = (dir+1) % 4;
         }
         return ans;
     }
-
 };

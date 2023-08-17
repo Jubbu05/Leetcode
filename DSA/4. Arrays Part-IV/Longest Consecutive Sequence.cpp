@@ -32,7 +32,7 @@ public:
     int longestConsecutive(vector<int>& nums) {
         int n = nums.size();
         if(n == 0) return 0; 
-        set<int> s;
+        unordered_set<int> s;
         int maxlen = 1;
 
         for(auto it:nums){
@@ -43,10 +43,10 @@ public:
             int curr_ele = nums[i];
             int prev_ele = curr_ele -1;
             int cnt=0;
-            if(s.find(prev_ele)==s.end()){ //can't find previous element in list so it can be the start of chain
+            if(s.find(prev_ele)==s.end()){ //can't find previous element in list
                 //start chain it can be the first element of the chain
                 while(s.find(curr_ele) != s.end()){
-                    curr_ele += 1;
+                    curr_ele++;
                     cnt++;
                 }
             }

@@ -3,40 +3,25 @@ class Solution
 public:
     int calculate(string s)
     {
-        stack<int> nums, ops;
-        int num = 0;
-        int rst = 0;
-        int sign = 1;
-        for (char c : s)
+        int total = 0;
+        vector<int> signs(2, 1);
+        for (int i = 0; i < s.size(); i++)
         {
-            if (isdigit(c))
+            char c = s[i];
+            if (c >= '0')
             {
-                num = num * 10 + c - '0';
+                int number = 0;
+                while (i < s.size() && s[i] >= '0')
+                    number = 10 * number + s[i++] - '0';
+                total += signs.back() * number;
+                signs.pop_back();
+                i--;
             }
-            else
-            {
-                rst += sign * num;
-                num = 0;
-                if (c == '+')
-                    sign = 1;
-                if (c == '-')
-                    sign = -1;
-                if (c == '(')
-                {
-                    nums.push(rst);
-                    ops.push(sign);
-                    rst = 0;
-                    sign = 1;
-                }
-                if (c == ')' && ops.size())
-                {
-                    rst = ops.top() * rst + nums.top();
-                    ops.pop();
-                    nums.pop();
-                }
-            }
+            else if (c == ')')
+                signs.pop_back();
+            else if (c != ' ')
+                signs.push_back(signs.back() * (c == '-' ? -1 : 1));
         }
-        rst += sign * num;
-        return rst;
+        return total;
     }
 };

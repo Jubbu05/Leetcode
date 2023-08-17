@@ -1,56 +1,40 @@
-class Solution
+#include <bits/stdc++.h>
+bool isGraphBirpatite(vector<vector<int>> &edges)
 {
-public:
-    bool check(int start, int V, vector<int> adj[], int color[])
+    // Write your code here.
+    int n = edges.size();
+    vector<int> adj[n];
+    for (int i = 0; i < edges.size(); i++)
     {
-        queue<int> q;
-        q.push(start);
-        color[start] = 0;
-        while (!q.empty())
+        for (int j = 0; j < edges[i].size(); j++)
         {
-            int node = q.front();
-            q.pop();
-
-            for (auto it : adj[node])
+            if (edges[i][j] == 1)
             {
-                // if the adjacent node is yet not colored
-                // you will give the opposite color of the node
-                if (color[it] == -1)
-                {
-
-                    color[it] = !color[node];
-                    q.push(it);
-                }
-                // is the adjacent guy having the same color
-                // someone did color it on some other path
-                else if (color[it] == color[node])
-                {
-                    return false;
-                }
+                adj[i].push_back(j);
+                adj[j].push_back(i);
             }
         }
-        return true;
     }
-
-public:
-    bool isBipartite(int V, vector<int> adj[])
+    queue<int> q;
+    vector<int> color(n, 0);
+    q.push(0);
+    color[0] = 1;
+    while (!q.empty())
     {
-        int color[V];
-        for (int i = 0; i < V; i++)
-            color[i] = -1;
-
-        // we will check for multiple components
-        for (int i = 0; i < V; i++)
+        int node = q.front();
+        q.pop();
+        for (auto it : adj[node])
         {
-            // if not coloured
-            if (color[i] == -1)
+            if (color[it] == 0)
             {
-                if (check(i, V, adj, color) == false)
-                {
-                    return false;
-                }
+                color[it] = -color[node];
+                q.push(it);
+            }
+            else if (color[node] == color[it])
+            {
+                return false;
             }
         }
-        return true;
     }
-};
+    return true;
+}

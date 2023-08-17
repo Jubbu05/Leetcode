@@ -1,37 +1,24 @@
-class Solution
-{
-    public:
-    //Function to check if two strings are isomorphic.
-    bool areIsomorphic(string str1, string str2){
-        char hash[256]; 
-        int n1 = str1.size();
-        int n2 = str2.size();
-        
-        // Checking Base case 
-        if(n1 != n2){
-            return false;
-        }
-        
-        // checking str1 to str2 mapping
-        for(int i=0;i<n1;i++){
-            hash[str1[i]] = str2[i];
-        }
-        for(int i=0;i<n1;i++){
-            if(str2[i] != hash[str1[i]]){
-                return false;
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+        int n = s.size();
+        unordered_map<char, char> ms, mt;
+        for(int i=0; i<n; i++){
+            if(ms.find(s[i]) == ms.end()){
+                if(mt.find(t[i]) == mt.end()){
+                    ms[s[i]] = t[i];
+                    mt[t[i]] = s[i];
+                }
+                else{
+                    return false;
+                }
+            }
+            else{
+                if(ms[s[i]] != t[i]){
+                    return false;
+                }
             }
         }
-        
-        // checking str2 to str1 mapping
-        for(int i=0;i<n1;i++){
-            hash[str2[i]] = str1[i];
-        }
-        for(int i=0;i<n1;i++){
-            if(str1[i] != hash[str2[i]]){
-                return false;
-            }
-        }
-        
         return true;
     }
 };

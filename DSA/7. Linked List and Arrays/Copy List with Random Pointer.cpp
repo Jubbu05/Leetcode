@@ -33,3 +33,44 @@ public:
         return m[head];
     }
 };
+
+class Solution {
+public:
+    Node* copyRandomList(Node* head) {
+        if(!head) return head;
+        
+        //creates mapping of cloned list using original list
+        Node* temp=head;
+        while(temp){
+            Node* newNode = new Node(temp->val);
+            newNode->next = temp->next;
+            temp->next = newNode;
+            temp = newNode->next;
+        }
+
+        //assigning random pointers
+        temp = head;
+        while(temp){
+            if(temp->random)
+            {
+               temp->next->random = temp->random->next;   
+            }
+            temp=temp->next->next;
+        }
+
+        //restore the original linked list
+        temp = head;
+        Node* newHead = head->next;
+        Node* temp2 = head->next;
+        while(temp && temp2){
+            Node* og = temp2->next;
+            temp->next = og;
+            if(og){
+                temp2->next = og->next;
+            }
+            temp = temp->next;
+            temp2 = temp2->next;
+        }
+        return newHead;
+    }
+};
