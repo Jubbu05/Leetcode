@@ -14,7 +14,6 @@ public:
         if (i == n - 1 && j == n - 1)
         {
             ans.push_back(s);
-            s = ""; // Resetting the string for the next path
             return;
         }
 

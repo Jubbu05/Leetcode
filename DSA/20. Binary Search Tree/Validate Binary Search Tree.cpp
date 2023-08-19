@@ -5,7 +5,9 @@ public:
         if(root==NULL) return true;
         //out of boundry
         if(root->val >= maxVal || root->val <= minVal) return false;
-        return isValidInRange(root->left, minVal, root->val) && isValidInRange(root->right, root->val, maxVal);
+        bool lh = isValidInRange(root->left, minVal, root->val); 
+        bool rh = isValidInRange(root->right, root->val, maxVal);
+        return lh && rh;
     }
 
     bool isValidBST(TreeNode* root) {
