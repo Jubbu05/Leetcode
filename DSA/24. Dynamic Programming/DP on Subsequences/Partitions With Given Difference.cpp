@@ -1,3 +1,6 @@
+// S1 + S2 = TotalSum
+// S1 = TotalSum - S2
+
 // S1 - S2 = D
 // TotalSum - S2 -S2 = D
 // S2 = (TotalSum - D)/2 -> Subset Sum Problem We are looking for this subset

@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 int cutRodUtil(vector<int> &price, int ind, int N, vector<vector<int>> &dp)
 {
-
     if (ind == 0)
     {
         return N * price[0];

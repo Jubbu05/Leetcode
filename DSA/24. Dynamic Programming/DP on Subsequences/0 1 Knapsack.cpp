@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 int knapsackUtil(vector<int> &wt, vector<int> &val, int ind, int W, vector<vector<int>> &dp)
 {
-
     if (ind == 0)
     {
         if (wt[0] <= W)
