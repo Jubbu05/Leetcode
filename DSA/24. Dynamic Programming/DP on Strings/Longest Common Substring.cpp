@@ -1,3 +1,34 @@
+#include <bits/stdc++.h>
+int helper(int idx1, int idx2, string &s1, string &s2, vector<vector<int>> &dp)
+{
+    if (idx1 < 0 || idx2 < 0)
+        return 0; // longest length if one string becomes 0 is 0
+
+    if (dp[idx1][idx2] != -1)
+        return dp[idx1][idx2];
+
+    if (s1[idx1] == s2[idx2])
+        return dp[idx1][idx2] = 1 + helper(idx1 - 1, idx2 - 1, s1, s2, dp);
+    else
+        return 0;
+}
+int lcs(string &text1, string &text2)
+{
+    int n = text1.length();
+    int m = text2.length();
+    int res = 0;
+    vector<vector<int>> dp(n, vector<int>(m, -1));
+
+    for (int i = 0; i < n; i++)
+    {
+
+        for (int j = 0; j < m; j++)
+
+            res = max(res, helper(i, j, text1, text2, dp));
+    }
+
+    return res;
+}
 // TABULATION
 class Solution
 {

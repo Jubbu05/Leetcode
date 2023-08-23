@@ -1,33 +1,33 @@
 //FIXED STARTING POINT BUT VARIABLE ENDING POINT
 
 
-// class Solution
-// {
-// public:
-//     int solve(int i, int j, vector<vector<int>> &triangle, vector<vector<int>> &dp)
-//     {
-//         // base case
-//         int n = triangle.size();
-//         if (i == n - 1)
-//             return triangle[n - 1][j];
+class Solution
+{
+public:
+    int solve(int i, int j, vector<vector<int>> &triangle, vector<vector<int>> &dp)
+    {
+        // base case
+        int n = triangle.size();
+        if (i == n - 1)
+            return triangle[n - 1][j];
 
-//         if (dp[i][j] != -1)
-//             return dp[i][j];
+        if (dp[i][j] != -1)
+            return dp[i][j];
 
-//         int below = triangle[i][j] + solve(i + 1, j, triangle, dp);
+        int below = triangle[i][j] + solve(i + 1, j, triangle, dp);
 
-//         int diagBelow = triangle[i][j] + solve(i + 1, j + 1, triangle, dp);
+        int diagBelow = triangle[i][j] + solve(i + 1, j + 1, triangle, dp);
 
-//         return dp[i][j] = min(below, diagBelow);
-//     }
-//     int minimumTotal(vector<vector<int>> &triangle)
-//     {
-//         int n = triangle.size();
-//         vector<vector<int>> dp(n, vector<int>(n, -1));
+        return dp[i][j] = min(below, diagBelow);
+    }
+    int minimumTotal(vector<vector<int>> &triangle)
+    {
+        int n = triangle.size();
+        vector<vector<int>> dp(n, vector<int>(n, -1));
 
-//         return solve(0, 0, triangle, dp);
-//     }
-// };
+        return solve(0, 0, triangle, dp);
+    }
+};
 
 // TABULATION
 class Solution

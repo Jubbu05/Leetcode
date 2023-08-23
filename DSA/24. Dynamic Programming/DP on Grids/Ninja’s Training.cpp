@@ -2,34 +2,43 @@
 // 1 -> 1st task was done
 // 2 -> 2nd task was done
 // 3 -> No task was done
-solve(int day, int lasttask, vector<vector<int>> &points)
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int f(int day, int lastTask, vector<vector<int>> &points, vector<vector<int>> &dp)
 {
-    // base case
+
+    if (dp[day][lastTask] != -1)
+        return dp[day][lastTask];
+
     if (day == 0)
     {
         int maxi = 0;
-        for (int task = 0; task < 3; task++)
+        for (int i = 0; i <= 2; i++)
         {
-            if (task != lasttask)
-            {
-                maxi = max(maxi, points[0][task]);
-            }
+            if (i != lastTask)
+                maxi = max(maxi, points[0][i]);
         }
-        return maxi;
+        return dp[day][lastTask] = maxi;
     }
 
     int maxi = 0;
-    for (int task = 0; task < 3; task++)
+    for (int task = 0; task <= 2; task++)
     {
-        if (task != lasttask)
+        if (task != lastTask)
         {
-            int point = points[day][task] + solve(day - 1, task);
-            maxi = max(maxi, point);
+            int activity = points[day][task] + f(day - 1, task, points, dp);
+            maxi = max(maxi, activity);
         }
     }
-    return maxi;
+
+    return dp[day][lastTask] = maxi;
 }
+
 int ninjaTraining(int n, vector<vector<int>> &points)
 {
-    return solve(n - 1, 3, points);
+
+    vector<vector<int>> dp(n, vector<int>(4, -1));
+    return f(n - 1, 3, points, dp);
 }

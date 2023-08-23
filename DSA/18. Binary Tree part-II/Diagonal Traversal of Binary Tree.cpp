@@ -11,8 +11,8 @@ vector<int> diagonal(Node *root)
         q.pop();
         while (temp)
         {
-            if (temp->left)
-                q.push(temp->left);
+            if (temp->left) q.push(temp->left);
+            
             ans.push_back(temp->data);
             temp = temp->right;
         }

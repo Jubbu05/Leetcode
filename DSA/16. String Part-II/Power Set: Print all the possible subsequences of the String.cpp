@@ -1,4 +1,31 @@
 #include <bits/stdc++.h>
+void solve(int index, string &str, vector<string> &ans, string s)
+{
+    if (index == str.size())
+    {
+        if (s.size() > 0)
+            ans.push_back(s);
+        return;
+    }
+    // Take
+    s.push_back(str[index]);
+    solve(index + 1, str, ans, s);
+    s.pop_back();
+
+    // Not Take
+    solve(index + 1, str, ans, s);
+}
+vector<string> subsequences(string str)
+{
+    vector<string> ans;
+    string s = "";
+    solve(0, str, ans, s);
+    return ans;
+}
+
+//-------------------------------------------------------------------------------
+
+#include <bits/stdc++.h>
 vector<string> subsequences(string s)
 {
     int n = s.length();
@@ -25,28 +52,3 @@ vector<string> subsequences(string s)
     return ans;
 }
 
-//---------------------------------------------------------
-
-#include <bits/stdc++.h>
-void solve(int index, string &str, vector<string> &ans, string s)
-{
-    if (index == str.size())
-    {
-        if (s.size() > 0)
-            ans.push_back(s);
-        return;
-    }
-    // Take
-    s.push_back(str[index]);
-    solve(index + 1, str, ans, s);
-    // Not Take
-    s.pop_back();
-    solve(index + 1, str, ans, s);
-}
-vector<string> subsequences(string str)
-{
-    vector<string> ans;
-    string s = "";
-    solve(0, str, ans, s);
-    return ans;
-}

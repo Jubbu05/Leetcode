@@ -1,44 +1,24 @@
-// 0 -> 0th task was done
-// 1 -> 1st task was done
-// 2 -> 2nd task was done
-// 3 -> No task was done
 #include <bits/stdc++.h>
-
-using namespace std;
-
-int f(int day, int lastTask, vector<vector<int>> &points, vector<vector<int>> &dp)
+int solve(int ind, vector<int> &nums, vector<int> &dp)
 {
+    // means we didn't pick ind=1 so pick ind=0
+    if (ind == 0)
+        return nums[ind];
+    if (ind < 0)
+        return 0;
 
-    if (dp[day][lastTask] != -1)
-        return dp[day][lastTask];
+    if (dp[ind] != -1)
+        return dp[ind];
 
-    if (day == 0)
-    {
-        int maxi = 0;
-        for (int i = 0; i <= 2; i++)
-        {
-            if (i != lastTask)
-                maxi = max(maxi, points[0][i]);
-        }
-        return dp[day][lastTask] = maxi;
-    }
+    int pick = nums[ind] + solve(ind - 2, nums, dp);
+    int notpick = 0 + solve(ind - 1, nums, dp);
 
-    int maxi = 0;
-    for (int i = 0; i <= 2; i++)
-    {
-        if (i != lastTask)
-        {
-            int activity = points[day][i] + f(day - 1, i, points, dp);
-            maxi = max(maxi, activity);
-        }
-    }
-
-    return dp[day][lastTask] = maxi;
+    return dp[ind] = max(pick, notpick);
 }
 
-int ninjaTraining(int n, vector<vector<int>> &points)
+int maximumNonAdjacentSum(vector<int> &nums)
 {
-
-    vector<vector<int>> dp(n, vector<int>(4, -1));
-    return f(n - 1, 3, points, dp);
+    int n = nums.size();
+    vector<int> dp(n, -1);
+    return solve(n - 1, nums, dp);
 }

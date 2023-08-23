@@ -3,58 +3,49 @@ class Solution
 public:
     int countPaths(int n, vector<vector<int>> &roads)
     {
-        // adjacency list
+        int mod = 1e9 + 7;
         vector<pair<int, int>> adj[n];
 
-        // create the graph
-        for (auto &v : roads)
+        for (auto it : roads)
         {
-            adj[v[0]].push_back({v[1], v[2]});
-            adj[v[1]].push_back({v[0], v[2]});
+            adj[it[0]].push_back({it[1], it[2]});
+            adj[it[1]].push_back({it[0], it[2]});
         }
-
-        int mod = 1e9 + 7;
-        // priority queue for keep track of min distance
         priority_queue<pair<long long, long long>, vector<pair<long long, long long>>, greater<pair<long long, long long>>> pq;
-        // store the distance and number of paths
-        vector<long long> dis(n, 1e15), path(n, 0);
+        vector<long long> dist(n, 1e15), ways(n, 0);
 
-        // push the initial node and distance to reach start is 0
         pq.push({0, 0});
-        // mark the distance to 0
-        dis[0] = 0;
-        // mark the path number to 1
-        path[0] = 1;
+        dist[0] = 1;
+        ways[0] = 1;
 
-        // until queue is not empty
         while (!pq.empty())
         {
-            // get the top (min distance) element from priority queue and remove
-            long long dist = pq.top().first;
+            long long dis = pq.top().first;
             int node = pq.top().second;
             pq.pop();
 
-            // iterate on its adjacent nodes
-            for (auto &child : adj[node])
+            for (auto it : adj[node])
             {
-                int adjNode = child.first;
-                long long wt = child.second;
-
-                // if it min distance to reach at a node then update it
-                if (dist + wt < dis[adjNode])
+                int adjNode = it.first;
+                int wt = it.second;
+                
+                //if the distance of the adjacent node is greater than the distance of the current node + weight of the edge
+                //then update the distance of the adjacent node and push it in the priority queue
+                if (dis + wt < dist[adjNode])
                 {
-                    dis[adjNode] = dist + wt;
-                    path[adjNode] = path[node];
-                    pq.push({dist + wt, adjNode});
+                    dist[adjNode] = dis + wt;
+                    ways[adjNode] = ways[node]; //update the ways of the adjacent node
+                    pq.push({dis + wt, adjNode});
                 }
-                else if (dist + wt == dis[adjNode])
+                //if the distance of the adjacent node is equal to the distance of the current node 
+                //it means that there are multiple ways to reach the adjacent node
+                //so we add the ways of the current node to the ways of the adjacent node as both are equal
+                else if (dis + wt == dist[adjNode])
                 {
-                    // if it already visited with the shortest dis then increse the path with the current node path
-                    path[adjNode] = (path[node] + path[adjNode]) % mod;
+                    ways[adjNode] = (ways[node] + ways[adjNode]) % mod;
                 }
             }
         }
-
-        return path[n - 1];
+        return ways[n - 1];
     }
 };
