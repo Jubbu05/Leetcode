@@ -1,57 +1,65 @@
-//TC - O(NlogN) + O(N) 
-class Solution {
+// TC - O(NlogN) + O(N)
+class Solution
+{
 public:
-    int longestConsecutive(vector<int>& arr) {
+    int longestConsecutive(vector<int> &arr)
+    {
         int n = arr.size(); // extract the size of array
-        if(n == 0) return 0; // if length of array is zero, then from here simply return 0
+        if (n == 0)
+            return 0; // if length of array is zero, then from here simply return 0
         sort(arr.begin(), arr.end());
         int mxLen = 0, currLen = 1;
-        
-        for(int i = 1; i < n; i++){
-            if(arr[i] == arr[i - 1] + 1) // this is the part of consecutive sequence
+
+        for (int i = 1; i < n; i++)
+        {
+            if (arr[i] == arr[i - 1] + 1) // this is the part of consecutive sequence
             {
                 currLen++; // increase the curr Length by 1
             }
-            else if(arr[i] != arr[i - 1]) // but if it is not equal
+            else if (arr[i] != arr[i - 1]) // but if it is not equal
             {
-                mxLen = max(mxLen, currLen); // update our mxLen 
-                currLen = 1; // and reset the currLen with 1
+                mxLen = max(mxLen, currLen); // update our mxLen
+                currLen = 1;                 // and reset the currLen with 1
             }
         }
-        mxLen = max(mxLen, currLen); // update our mxLen 
-        return mxLen; // Finally return mxLen
+        mxLen = max(mxLen, currLen); // update our mxLen
+        return mxLen;                // Finally return mxLen
     }
 };
 
 //------------------------------------------------------------------------------------------------
 
-//Optimized Approach
-//TC - O(N) + O(N) + O(N) = O(3N) = O(N)
-class Solution {
+// Optimized Approach
+// TC - O(N) + O(N) + O(N) = O(3N) = O(N)
+class Solution
+{
 public:
-    int longestConsecutive(vector<int>& nums) {
-        int n = nums.size();
-        if(n == 0) return 0; 
+    int longestConsecutive(vector<int> &arr)
+    {
+        int n = arr.size();
+        if (n == 0)
+            return 0;
         unordered_set<int> s;
-        int maxlen = 1;
 
-        for(auto it:nums){
+        for (auto it : arr)
+        {
             s.insert(it);
         }
-
-        for(int i=0; i<n; i++){
-            int curr_ele = nums[i];
-            int prev_ele = curr_ele -1;
-            int cnt=0;
-            if(s.find(prev_ele)==s.end()){ //can't find previous element in list
-                //start chain it can be the first element of the chain
-                while(s.find(curr_ele) != s.end()){
-                    curr_ele++;
+        int maxi = 1;
+        for (auto it : s)
+        {
+            if (s.find(it - 1) == s.end())
+            {
+                int cnt = 0;
+                int x = it;
+                while (s.find(x) != s.end())
+                {
+                    x++;
                     cnt++;
                 }
+                maxi = max(maxi, cnt);
             }
-            maxlen = max(maxlen,cnt);
         }
-        return maxlen;
+        return maxi;
     }
 };

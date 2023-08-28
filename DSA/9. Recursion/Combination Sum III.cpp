@@ -1,27 +1,29 @@
 class Solution
 {
-    vector<vector<int>> result;
-    void try_combination(vector<int> &combination, int k, int n, int start)
+    vector<vector<int>> ans;
+    void solve(int ind, int sum, int k, vector<int> &temp, int start)
     {
-        if (k == combination.size())
+        if (ind == k)
         {
-            if (n == 0)
-                result.push_back(combination);
+            if (sum == 0)
+            {
+                ans.push_back(temp);
+            }
             return;
         }
+
         for (int i = start; i <= 9; i++)
         {
-            combination.push_back(i);
-            try_combination(combination, k, n - i, i + 1);
-            combination.pop_back();
+            temp.push_back(i);
+            solve(ind + 1, sum - i, k, temp, i + 1);
+            temp.pop_back();
         }
     }
-
-public:
-    vector<vector<int>> combinationSum3(int k, int n)
+    public:
+    vector<vector<int>> combinationSum3(int k, int sum)
     {
-        vector<int> combination;
-        try_combination(combination, k, n, 1);
-        return result;
+        vector<int> temp;
+        solve(0, sum, k, temp, 1);
+        return ans;
     }
 };

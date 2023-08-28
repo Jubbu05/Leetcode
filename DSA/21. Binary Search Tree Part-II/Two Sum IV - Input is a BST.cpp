@@ -1,33 +1,34 @@
-// class Solution
-// {
-// public:
-//     vector<int> srt;
-//     void inorder(TreeNode *r)
-//     {
-//         if (r == NULL)
-//             return;
-//         inorder(r->left);
-//         srt.push_back(r->val);
-//         inorder(r->right);
-//     }
-//     bool findTarget(TreeNode *root, int k)
-//     {
-//         inorder(root);
+class Solution
+{
+public:
+    vector<int> srt;
+    void inorder(TreeNode *r)
+    {
+        if (r == NULL)
+            return;
+        inorder(r->left);
+        srt.push_back(r->val);
+        inorder(r->right);
+    }
+    bool findTarget(TreeNode *root, int k)
+    {
+        inorder(root);
 
-//         int low = 0, high = srt.size() - 1;
-//         while (low < high)
-//         {
-//             int sum = srt[low] + srt[high];
-//             if (sum == k)
-//                 return true;
-//             else if (sum < k)
-//                 low++;
-//             else
-//                 high--;
-//         }
-//         return false;
-//     }
-// };
+        int low = 0, high = srt.size() - 1;
+        while (low < high)
+        {
+            int sum = srt[low] + srt[high];
+            if (sum == k)
+                return true;
+            else if (sum < k)
+                low++;
+            else
+                high--;
+        }
+        return false;
+    }
+};
+
 class Solution
 {
 public:

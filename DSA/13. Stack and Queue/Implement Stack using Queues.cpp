@@ -19,7 +19,7 @@ public:
     
     /** Removes the element on top of the stack and returns that element. */
     int pop() {
-        int result = top();
+        int result = q1.front();
         q1.pop();
         return result;
     }

@@ -11,11 +11,15 @@ public:
             return;
         }
         if(oc < n){
-            solve(ans, temp + "(", oc+1, cc, n);
+            temp.push_back('(');
+            solve(ans, temp, oc+1, cc, n);
+            temp.pop_back();
         }
 
         if(cc < oc){
-            solve(ans, temp + ")", oc, cc+1, n);
+            temp.push_back(')');
+            solve(ans, temp, oc, cc+1, n);
+            temp.pop_back();
         }
     }
     vector<string> generateParenthesis(int n) {
