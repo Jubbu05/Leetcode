@@ -17,6 +17,8 @@
         "regex": "cpp",
         "valarray": "cpp",
         "bitset": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "any": "cpp",
+        "*.tcc": "cpp"
     }
 }
