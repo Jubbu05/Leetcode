@@ -2,22 +2,30 @@ WITH cte AS(
     SELECT
         year,
         'Wimbledon' AS tournament,
-        Wimbledon AS winner
+        Wimbledon AS player_id
+    FROM
+        Championships
     UNION
     SELECT
         year,
         'Fr_open' AS tournament,
-        Fr_open AS winner
+        Fr_open AS player_id
+    FROM
+        Championships
     UNION
     SELECT
         year,
         'Us_open' AS tournament,
-        Us_open AS winner
+        Us_open AS player_id
+    FROM
+        Championships
     UNION
     SELECT
         year,
         'Au_open' AS tournament,
-        Au_open AS winner
+        Au_open AS player_id
+    FROM
+        Championships
 ),
 cte2 AS(
     SELECT

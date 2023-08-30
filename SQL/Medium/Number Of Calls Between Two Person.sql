@@ -17,8 +17,5 @@ SELECT
     person2,
     COUNT(*) AS call_count,
     sum(duration) AS total_duration
-FROM
-    cte
-GROUP BY
-    person1,
-    person2
+FROM cte
+GROUP BY person1, person2

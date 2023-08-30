@@ -15,7 +15,7 @@ GROUP BY
                 PARTITION BY customer_id
                 ORDER BY
                     numb_order DESC
-            ) AS most_frequent
+            ) AS most_frequentl
         FROM
             cte
         GROUP BY
