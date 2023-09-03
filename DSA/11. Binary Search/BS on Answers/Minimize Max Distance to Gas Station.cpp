@@ -33,6 +33,9 @@ long double minimiseMaxDistance(vector<int> &arr, int k)
 
 //-----------------------------------------------------------------------------------------
 
+//TC - O(NlogN + KlogN)
+//SC - O(N-1)
+
 #include <bits/stdc++.h>
 long double minimiseMaxDistance(vector<int> &arr, int k)
 {
@@ -62,6 +65,8 @@ long double minimiseMaxDistance(vector<int> &arr, int k)
 
 //-----------------------------------------------------------------------------------------
 
+//TC - O(NlogN + KlogN)
+//SC - O(N-1)
 #include <bits/stdc++.h>
 int NumberOfGasStations(vector<int> &arr, long double dist)
 {

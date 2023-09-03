@@ -1,4 +1,4 @@
-// https://www.codingninjas.com/studio/problems/subarrays-with-sum-%E2%80%98k'_6922076?utm_source=striver&utm_medium=website&utm_campaign=a_zcoursetuf&leftPanelTab=0
+// https://www.codingninjas.com/studio/problems/subarrays-with-sum-%ESubarrays2%80%98k6922076?utm_source=striver&utm_medium=website&utm_campaign=a_zcoursetuf&leftPanelTab=0
 
 #include <bits/stdc++.h>
 vector<vector<int>> subarraysWithSumK(vector<int> a, long long k)

@@ -10,7 +10,10 @@ public:
         if (dp[i][j] != -1)
             return dp[i][j];
 
+        //solve bottom up
+        //individual problem 
         int maxi = INT_MIN;
+        //try to burst every balloons
         for (int ind = i; ind <= j; ind++)
         {
             int coins = nums[i - 1] * nums[ind] * nums[j + 1] + f(i, ind - 1, nums, dp) + f(ind + 1, j, nums, dp);
