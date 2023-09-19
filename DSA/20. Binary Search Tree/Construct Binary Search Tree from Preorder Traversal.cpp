@@ -41,22 +41,25 @@ public:
 
 //--------------------------------------------------------------------------------------------------
 
+// ROOT LEFT RIGHT
+// Only need upper bound
 class Solution
 {
 public:
-    TreeNode *bstFromPreorder(vector<int> &A)
+    TreeNode *build(vector<int> &preOrder, int &i, int bound)
+    {
+        if (i == preOrder.size() || preOrder[i] > bound)
+        {
+            return NULL;
+        }
+        TreeNode *root = new TreeNode(preOrder[i++]);
+        root->left = build(preOrder, i, root->val); //upper bound will be root's value
+        root->right = build(preOrder, i, bound); //upper bound will be the bound it's carrying
+        return root;
+    }
+    TreeNode *bstFromPreorder(vector<int> &preOrder)
     {
         int i = 0;
-        return build(A, i, INT_MAX);
-    }
-
-    TreeNode *build(vector<int> &A, int &i, int bound)
-    {
-        if (i == A.size() || A[i] > bound)
-            return NULL;
-        TreeNode *root = new TreeNode(A[i++]);
-        root->left = build(A, i, root->val);
-        root->right = build(A, i, bound);
-        return root;
+        return build(preOrder, i, INT_MAX);
     }
 };

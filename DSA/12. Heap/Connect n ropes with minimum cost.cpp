@@ -1,25 +1,33 @@
-class Solution
+// Minimum Cost To Connect Sticks
+
+#include <bits/stdc++.h>
+long long int minimumCostToConnectSticks(vector<int> &arr)
 {
-    public:
-    //Function to return the minimum cost of connecting the ropes.
-    long long minCost(long long arr[], long long n) {
-        if(n<=1) return 0;
-        
-        priority_queue<long long ,vector<long long>, greater<long long>> pq(arr, arr+n);  // min heap
-        
-        long long sum=0;
-        
-        while(!pq.empty()){
-            long long first = pq.top();
-            pq.pop();
-            long long second = pq.top();
-            pq.pop();
-            long long temp = first + second;
-            sum += temp;
-            if(!pq.empty()){
-                pq.push(temp);
-            }
-        }
-        return sum;
+    int n = arr.size();
+    if (n <= 1)
+        return 0;
+
+    priority_queue<long long, vector<long long>, greater<long long>> pq;
+
+    for (auto it : arr)
+    {
+        pq.push(it);
     }
-};
+
+    long long sum = 0;
+
+    while (!pq.empty())
+    {
+        long long first = pq.top();
+        pq.pop();
+        long long second = pq.top();
+        pq.pop();
+        long long temp = first + second;
+        sum += temp;
+        if (!pq.empty())
+        {
+            pq.push(temp);
+        }
+    }
+    return sum;
+}

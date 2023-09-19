@@ -31,30 +31,27 @@ public:
 
 // Optimized Approach
 // TC - O(N) + O(N) + O(N) = O(3N) = O(N)
-class Solution
-{
+class Solution {
 public:
-    int longestConsecutive(vector<int> &arr)
-    {
-        int n = arr.size();
-        if (n == 0)
+    int longestConsecutive(vector<int>& nums) {
+        int n = nums.size();
+        if(n == 0){
             return 0;
+        }
         unordered_set<int> s;
-
-        for (auto it : arr)
-        {
+        for(auto it : nums){
             s.insert(it);
         }
+
         int maxi = 1;
-        for (auto it : s)
-        {
-            if (s.find(it - 1) == s.end())
-            {
+
+        for(auto it : nums){
+            int ele = it;
+            int prev = it - 1;
+            if(s.find(prev) == s.end()){ //can be the start
                 int cnt = 0;
-                int x = it;
-                while (s.find(x) != s.end())
-                {
-                    x++;
+                while(s.find(ele) != s.end()){
+                    ele++;
                     cnt++;
                 }
                 maxi = max(maxi, cnt);

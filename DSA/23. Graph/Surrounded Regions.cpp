@@ -43,53 +43,57 @@ public:
 };
 
 // BFS
-class Solution
-{
+class Solution {
 public:
-    void solve(vector<vector<char>> &board)
+    bool isValid(int row, int col, int n, int m)
     {
+        return row >= 0 && row < n && col >= 0 && col < m;
+    }
+
+    void bfs(int row, int col, vector<vector<int>> &vis, vector<vector<char>>& board, int n, int m){
+        queue<pair<int, int>> q;
+
+        vis[row][col] = 1;
+        q.push({row, col});
+
+        int drow[] = {0, 1, 0, -1};
+        int dcol[] = {1, 0, -1, 0};
+
+        while(!q.empty()){
+            int row = q.front().first;
+            int col = q.front().second;
+            q.pop();
+
+            for(int i=0; i<4; i++){
+                int nrow = row + drow[i];
+                int ncol = col + dcol[i];
+
+                if(isValid(nrow, ncol, n, m) && !vis[nrow][ncol] && board[nrow][ncol] == 'O'){
+                    q.push({nrow, ncol});
+                    vis[nrow][ncol] = 1;
+                }
+            }
+        }
+    }
+
+    void solve(vector<vector<char>>& board) {
         int n = board.size();
         int m = board[0].size();
         vector<vector<int>> vis(n, vector<int>(m, 0));
-        queue<pair<int, int>> q;
-        for (int i = 0; i < n; i++)
-        {
-            for (int j = 0; j < m; j++)
-            {
-                if (i == 0 || j == 0 || i == (n - 1) || j == (m - 1))
-                {
-                    if (board[i][j] == 'O')
-                    {
-                        q.push({i, j});
-                        vis[i][j] = 1;
-                    }
+
+        for(int i=0; i<n; i++){
+            for(int j=0; j<m; j++){
+                if((i == 0 || j == 0 || i == n-1 || j == m-1) && !vis[i][j] && board[i][j] == 'O'){
+                    bfs(i, j, vis, board, n, m);
                 }
             }
         }
-        int dx[] = {0, 1, 0, -1};
-        int dy[] = {1, 0, -1, 0};
-        while (!q.empty())
-        {
-            int x = q.front().first;
-            int y = q.front().second;
-            q.pop();
-            for (int i = 0; i < 4; i++)
-            {
-                int nr = x + dx[i];
-                int nc = y + dy[i];
-                if (nr >= 0 && nr < n && nc >= 0 && nc < m && board[nr][nc] == 'O' && !vis[nr][nc])
-                {
-                    vis[nr][nc] = 1;
-                    q.push({nr, nc});
-                }
-            }
-        }
-        for (int i = 0; i < n; i++)
-        {
-            for (int j = 0; j < m; j++)
-            {
-                if (board[i][j] == 'O' && !vis[i][j])
+
+        for(int i=0; i<n; i++){
+            for(int j=0; j<m; j++){
+                if(board[i][j] == 'O' && !vis[i][j]){
                     board[i][j] = 'X';
+                }
             }
         }
     }

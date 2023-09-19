@@ -1,37 +1,43 @@
-#include <bits/stdc++.h>
-long long int solve(int ind, vector<int> &nums, vector<long long int> &dp)
-{
-    if (ind == 0)
-        return nums[ind];
-    if (ind < 0)
-        return 0;
+//TLE
+class Solution {
+public:
+	int maxsum(int i,vector<int>& nums){
+		if(i<0)return 0;
+		int pick=nums[i]+maxsum(i-2,nums);
+		int notpick=maxsum(i-1,nums);
+		return max(pick,notpick);
+	}
 
-    if (dp[ind] != -1)
-        return dp[ind];
+	int rob(vector<int>& nums) {
+		int n=nums.size();
+		if(n==1)return nums[0];
+		vector<int>nums1,nums2;
+		for(int i=0;i<n;i++){
+			if(i!=0)nums1.push_back(nums[i]);
+			if(i!=n-1)nums2.push_back(nums[i]);
+		}
+		return max(maxsum(n-2,nums1),maxsum(n-2,nums2)); 
+	}
+};
 
-    long long int pick = nums[ind] + solve(ind - 2, nums, dp);
-    long long int notpick = 0 + solve(ind - 1, nums, dp);
+class Solution {
+public:
+	int maxsum(int i,vector<int>& nums,vector<int>& dp){
+		if(i<0)return 0;
+		if(dp[i]!=-1)return dp[i];
+		int pick=nums[i]+maxsum(i-2,nums,dp);
+		int notpick=maxsum(i-1,nums,dp);
+		return dp[i]=max(pick,notpick);
+	}
 
-    return dp[ind] = max(pick, notpick);
-}
-long long int houseRobber(vector<int> &valueInHouse)
-{
-    int n = valueInHouse.size();
-
-    vector<int> temp1, temp2;
-
-    if (n == 1)
-        return valueInHouse[0];
-
-    for (int i = 0; i < n; i++)
-    {
-        if (i != 0)
-            temp1.push_back(valueInHouse[i]);
-        if (i != n - 1)
-            temp2.push_back(valueInHouse[i]);
-    }
-    vector<long long int> dp(n, -1);
-    long long int ans1 = solve(n - 1, temp1, dp);
-    long long int ans2 = solve(n - 1, temp2, dp);
-    return max(ans1, ans2);
-}
+	int rob(vector<int>& nums) {
+		int n=nums.size();
+		if(n==1)return nums[0];
+		vector<int>nums1,nums2,dp1(n-1,-1),dp2(n-1,-1);
+		for(int i=0;i<n;i++){
+			if(i!=0)nums1.push_back(nums[i]);
+			if(i!=n-1)nums2.push_back(nums[i]);
+		}
+		return max(maxsum(n-2,nums1,dp1),maxsum(n-2,nums2,dp2)); 
+	}
+};

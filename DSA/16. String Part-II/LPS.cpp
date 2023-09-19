@@ -13,7 +13,7 @@ vector<int> computeLPS(string p, int n)
         {
             lps[i] = len + 1;
             len++;
-            i++
+            i++;
         }
         else
         {

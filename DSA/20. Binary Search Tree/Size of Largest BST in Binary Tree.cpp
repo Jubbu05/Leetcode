@@ -12,11 +12,9 @@ vector<int> solve(TreeNode* root){
     //{bst/not , size, min, max}
     if(l[0] == 1 && r[0] == 1){
         if(root->data > l[3] && root->data < r[2]){
-            int x = l[2]; //min of left
-            int y =  r[3]; //max of right
-
-            if(x == INT_MAX) x = root->data;
-            if(y == INT_MIN) y = root->data;
+            
+            int x = min(l[2], root->data);
+            int y = max(r[3], root->data);
 
             return {1, l[1]+r[1]+1, x, y};
         }

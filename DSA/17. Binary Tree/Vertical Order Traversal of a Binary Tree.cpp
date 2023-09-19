@@ -38,3 +38,38 @@ public:
           return ans;
     }
 };
+
+// for not duplicate values
+
+#include <bits/stdc++.h> 
+vector<int> verticalOrderTraversal(TreeNode<int> *root)
+{
+    map<int, map<int, vector<int>>> mp;
+    queue<pair<TreeNode<int>* , pair<int, int>>> q;
+    q.push({root, {0,0}});
+
+    while(!q.empty()){
+        TreeNode<int>* node = q.front().first;
+        int vertical = q.front().second.first;
+        int level = q.front().second.second;
+        q.pop();
+        mp[vertical][level].push_back(node->data);
+
+        if(node->left){
+            q.push({node->left, {vertical-1, level+1}});
+        }
+        if(node->right){
+            q.push({node->right, {vertical+1, level+1}});
+        }
+    }
+
+    vector<int> ans;
+    for(auto it : mp){
+        for(auto p : it.second){
+            for(auto q : p.second){
+                ans.push_back(q);
+            }
+        }
+    }
+    return ans;
+}
